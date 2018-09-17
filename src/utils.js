@@ -80,11 +80,7 @@ function parseEnv(name, def) {
 }
 
 function envIsSet(name) {
-  return (
-    process.env.hasOwnProperty(name)
-    && process.env[name]
-    && process.env[name] !== 'undefined'
-  );
+  return process.env.hasOwnProperty(name) && process.env[name] && process.env[name] !== 'undefined';
 }
 
 function getConcurrentlyArgs(scripts, { killOthers = true } = {}) {
@@ -105,10 +101,7 @@ function getConcurrentlyArgs(scripts, { killOthers = true } = {}) {
     return all;
   }, {});
   const prefixColors = Object.keys(scripts)
-    .reduce(
-      (pColors, _s, i) => pColors.concat([`${colors[i % colors.length]}.bold.reset`]),
-      [],
-    )
+    .reduce((pColors, _s, i) => pColors.concat([`${colors[i % colors.length]}.bold.reset`]), [])
     .join(',');
 
   // prettier-ignore

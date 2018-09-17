@@ -75,12 +75,7 @@ cases(
       args: ['--no-cache'],
     },
     'runs on given files, but only js files': {
-      args: [
-        './src/index.js',
-        './package.json',
-        './src/index.css',
-        './src/component.js',
-      ],
+      args: ['./src/index.js', './package.json', './src/index.css', './src/component.js'],
     },
   },
 );

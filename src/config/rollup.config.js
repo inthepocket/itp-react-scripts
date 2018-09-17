@@ -46,23 +46,16 @@ const defaultExternal = umd ? peerDeps : deps.concat(peerDeps);
 
 const input = glob.sync(
   fromRoot(
-    process.env.BUILD_INPUT
-      || ifFile(
-        `src/${format}-entry.js`,
-        `src/${format}-entry.js`,
-        'src/index.js',
-      ),
+    process.env.BUILD_INPUT ||
+      ifFile(`src/${format}-entry.js`, `src/${format}-entry.js`, 'src/index.js'),
   ),
 );
 const codeSplitting = input.length > 1;
 
-if (
-  codeSplitting
-  && uniq(input.map(single => path.basename(single))).length !== input.length
-) {
+if (codeSplitting && uniq(input.map(single => path.basename(single))).length !== input.length) {
   throw new Error(
-    'Filenames of code-splitted entries should be unique to get deterministic output filenames.'
-      + `\nReceived those: ${input}.`,
+    'Filenames of code-splitted entries should be unique to get deterministic output filenames.' +
+      `\nReceived those: ${input}.`,
   );
 }
 
@@ -86,13 +79,7 @@ if (isPreact) {
 const externalPattern = new RegExp(`^(${external.join('|')})($|/)`);
 const externalPredicate = external.length === 0 ? () => false : id => externalPattern.test(id);
 
-const filename = [
-  pkg.name,
-  filenameSuffix,
-  `.${format}`,
-  minify ? '.min' : null,
-  '.js',
-]
+const filename = [pkg.name, filenameSuffix, `.${format}`, minify ? '.min' : null, '.js']
   .filter(Boolean)
   .join('');
 
@@ -113,18 +100,19 @@ const output = [
 const useBuiltinConfig = !hasFile('.babelrc') && !hasPkgProp('babel');
 const babelPresets = useBuiltinConfig ? [here('../config/babelrc.js')] : [];
 
-const replacements = Object.entries(
-  umd ? process.env : omit(process.env, ['NODE_ENV']),
-).reduce((acc, [key, value]) => {
-  let val;
-  if (value === 'true' || value === 'false' || Number.isInteger(+value)) {
-    val = value;
-  } else {
-    val = JSON.stringify(value);
-  }
-  acc[`process.env.${key}`] = val;
-  return acc;
-}, {});
+const replacements = Object.entries(umd ? process.env : omit(process.env, ['NODE_ENV'])).reduce(
+  (acc, [key, value]) => {
+    let val;
+    if (value === 'true' || value === 'false' || Number.isInteger(+value)) {
+      val = value;
+    } else {
+      val = JSON.stringify(value);
+    }
+    acc[`process.env.${key}`] = val;
+    return acc;
+  },
+  {},
+);
 
 module.exports = {
   input: codeSplitting ? input : input[0],
@@ -145,24 +133,22 @@ module.exports = {
     replace(replacements),
     useSizeSnapshot ? sizeSnapshot({ printInfo: false }) : null,
     minify ? terser() : null,
-    codeSplitting
-      && ((writes = 0) => ({
+    codeSplitting &&
+      ((writes = 0) => ({
         onwrite() {
           // eslint-disable-next-line no-plusplus, no-param-reassign
           if (++writes !== input.length) {
             return;
           }
 
-          input
-            .filter(single => single.indexOf('index.js') === -1)
-            .forEach((single) => {
-              const chunk = path.basename(single);
+          input.filter(single => single.indexOf('index.js') === -1).forEach(single => {
+            const chunk = path.basename(single);
 
-              writeExtraEntry(chunk.replace(/\..+$/, ''), {
-                cjs: `${dirpath}/cjs/${chunk}`,
-                esm: `${dirpath}/esm/${chunk}`,
-              });
+            writeExtraEntry(chunk.replace(/\..+$/, ''), {
+              cjs: `${dirpath}/cjs/${chunk}`,
+              esm: `${dirpath}/esm/${chunk}`,
             });
+          });
         },
       }))(),
   ].filter(Boolean),

@@ -13,9 +13,7 @@ expect.addSnapshotSerializer({
 
 cases(
   'format',
-  ({
-    snapshotLog = false, throws = false, signal = false, args = [],
-  }) => {
+  ({ snapshotLog = false, throws = false, signal = false, args = [] }) => {
     // beforeEach
     const { sync: crossSpawnSyncMock } = require('cross-spawn');
     const originalExit = process.exit;

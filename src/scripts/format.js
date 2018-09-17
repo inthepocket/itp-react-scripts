@@ -9,18 +9,15 @@ const parsedArgs = yargsParser(args);
 const here = p => path.join(__dirname, p);
 const hereRelative = p => here(p).replace(process.cwd(), '.');
 
-const useBuiltinConfig = !args.includes('--config')
-  && !hasFile('.prettierrc')
-  && !hasFile('prettier.config.js')
-  && !hasPkgProp('prettierrc');
-const config = useBuiltinConfig
-  ? ['--config', hereRelative('../config/prettierrc.js')]
-  : [];
+const useBuiltinConfig =
+  !args.includes('--config') &&
+  !hasFile('.prettierrc') &&
+  !hasFile('prettier.config.js') &&
+  !hasPkgProp('prettierrc');
+const config = useBuiltinConfig ? ['--config', hereRelative('../config/prettierrc.js')] : [];
 
 const useBuiltinIgnore = !args.includes('--ignore-path') && !hasFile('.prettierignore');
-const ignore = useBuiltinIgnore
-  ? ['--ignore-path', hereRelative('../config/prettierignore')]
-  : [];
+const ignore = useBuiltinIgnore ? ['--ignore-path', hereRelative('../config/prettierignore')] : [];
 
 const write = args.includes('--no-write') ? [] : ['--write'];
 
@@ -29,9 +26,7 @@ const write = args.includes('--no-write') ? [] : ['--write'];
 // This way the prettierignore will be applied
 const relativeArgs = args.map(a => a.replace(`${process.cwd()}/`, ''));
 
-const filesToApply = parsedArgs._.length
-  ? []
-  : ['**/*.+(js|json|less|css|ts|tsx|md)'];
+const filesToApply = parsedArgs._.length ? [] : ['**/*.+(js|json|less|css|ts|tsx|md)'];
 
 const result = spawn.sync(
   resolveBin('prettier'),
