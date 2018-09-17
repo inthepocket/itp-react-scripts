@@ -18,8 +18,7 @@
     "format": "node src format",
     "validate": "node src validate",
     "precommit": "node src precommit",
-    "commit": "git-cz",
-    "postinstall": "bash postinstall.sh"
+    "commit": "git-cz"
   },
   "files": [
     "dist",
