@@ -34,8 +34,6 @@ function hasGitAdd(linter) {
 }
 
 function getJsLinter(linters) {
-  const key = Object.keys(linters).find(
-    k => k.includes('**') && k.includes('js'),
-  );
+  const key = Object.keys(linters).find(k => k.includes('**') && k.includes('js'));
   return linters[key];
 }

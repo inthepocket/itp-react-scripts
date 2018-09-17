@@ -44,7 +44,9 @@ test("resolveBin resolves to the full path when it's not in $PATH", () => {
 });
 
 test("resolveBin resolves to the binary if it's in $PATH", () => {
-  whichSyncMock.mockImplementationOnce(() => require.resolve('cross-env/dist/bin/cross-env').replace(process.cwd(), '.'));
+  whichSyncMock.mockImplementationOnce(() =>
+    require.resolve('cross-env/dist/bin/cross-env').replace(process.cwd(), '.'),
+  );
   expect(require('../utils').resolveBin('cross-env')).toBe('cross-env');
   expect(whichSyncMock).toHaveBeenCalledTimes(1);
   expect(whichSyncMock).toHaveBeenCalledWith('cross-env');
@@ -80,9 +82,7 @@ test('parseEnv parses the existing environment variable', () => {
 
 test("parseEnv returns the default if the environment variable doesn't exist", () => {
   const defaultVal = { hello: 'world' };
-  expect(require('../utils').parseEnv('DOES_NOT_EXIST', defaultVal)).toBe(
-    defaultVal,
-  );
+  expect(require('../utils').parseEnv('DOES_NOT_EXIST', defaultVal)).toBe(defaultVal);
 });
 
 test('ifAnyDep returns the true argument if true and false argument if false', () => {

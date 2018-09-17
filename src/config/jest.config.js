@@ -1,18 +1,11 @@
 const path = require('path');
-const {
-  ifAnyDep, hasFile, hasPkgProp, fromRoot,
-} = require('../utils');
+const { ifAnyDep, hasFile, hasPkgProp, fromRoot } = require('../utils');
 
 const here = p => path.join(__dirname, p);
 
 const useBuiltInBabelConfig = !hasFile('.babelrc') && !hasPkgProp('babel');
 
-const ignores = [
-  '/node_modules/',
-  '/fixtures/',
-  '/__tests__/helpers/',
-  '__mocks__',
-];
+const ignores = ['/node_modules/', '/fixtures/', '/__tests__/helpers/', '__mocks__'];
 
 const jestConfig = {
   roots: [fromRoot('src')],

@@ -130,7 +130,7 @@ Or, for `babel`, a `.babelrc` with:
 Or, for `jest`:
 
 ```javascript
-const {jest: jestConfig} = require('itp-react-scripts/config')
+const { jest: jestConfig } = require('itp-react-scripts/config');
 module.exports = Object.assign(jestConfig, {
   // your overrides here
 
@@ -138,7 +138,7 @@ module.exports = Object.assign(jestConfig, {
   transform: {
     '\\.(ts|tsx)$': '<rootDir>/node_modules/ts-jest/preprocessor.js',
   },
-})
+});
 ```
 
 > Note: `itp-react-scripts` intentionally does not merge things for you when you start
@@ -164,6 +164,7 @@ Thanks goes to these people ([emoji key][emojis]):
 | [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub><b>Kent C. Dodds</b></sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=kentcdodds "Tests") | [<img src="https://avatars2.githubusercontent.com/u/22251956?v=4" width="100px;"/><br /><sub><b>Suhas Karanth</b></sub>](https://github.com/sudo-suhas)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=sudo-suhas "Code") [🐛](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/issues?q=author%3Asudo-suhas "Bug reports") [⚠️](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=sudo-suhas "Tests") | [<img src="https://avatars0.githubusercontent.com/u/1402095?v=4" width="100px;"/><br /><sub><b>Matt Parrish</b></sub>](https://github.com/pbomb)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=pbomb "Code") [⚠️](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=pbomb "Tests") | [<img src="https://avatars3.githubusercontent.com/u/1319157?v=4" width="100px;"/><br /><sub><b>Mateus</b></sub>](https://github.com/mateuscb)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=mateuscb "Code") [⚠️](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=mateuscb "Tests") | [<img src="https://avatars1.githubusercontent.com/u/2344137?v=4" width="100px;"/><br /><sub><b>Macklin Underdown</b></sub>](http://macklin.underdown.me)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=macklinu "Code") [⚠️](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=macklinu "Tests") | [<img src="https://avatars2.githubusercontent.com/u/179534?v=4" width="100px;"/><br /><sub><b>stereobooster</b></sub>](https://github.com/stereobooster)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=stereobooster "Code") [⚠️](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=stereobooster "Tests") | [<img src="https://avatars0.githubusercontent.com/u/410792?v=4" width="100px;"/><br /><sub><b>Dony Sukardi</b></sub>](http://dsds.io)<br />[🐛](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/issues?q=author%3Adonysukardi "Bug reports") [💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=donysukardi "Code") |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | [<img src="https://avatars3.githubusercontent.com/u/8997319?v=4" width="100px;"/><br /><sub><b>Alexander Nanberg</b></sub>](https://alexandernanberg.com)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=alexandernanberg "Code") | [<img src="https://avatars0.githubusercontent.com/u/8142934?v=4" width="100px;"/><br /><sub><b>Easybird</b></sub>](http://easybird.be)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=easybird "Code") [📖](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=easybird "Documentation") [🚇](#infra-easybird "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/6213695?v=4" width="100px;"/><br /><sub><b>Thibault Maekelbergh</b></sub>](http://thibmaek.com)<br />[💻](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=thibmaek "Code") [📖](https://github.com/kentcdodds/@inthepocket/itp-react-scripts/commits?author=thibmaek "Documentation") |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors][all-contributors] specification.

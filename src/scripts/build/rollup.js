@@ -25,9 +25,7 @@ const config = useBuiltinConfig
     ? ''
     : '--config'; // --config will pick up the rollup.config.js file
 
-const environment = parsedArgs.environment
-  ? `--environment ${parsedArgs.environment}`
-  : '';
+const environment = parsedArgs.environment ? `--environment ${parsedArgs.environment}` : '';
 const watch = parsedArgs.watch ? '--watch' : '';
 const sizeSnapshot = parsedArgs['size-snapshot'];
 
@@ -39,14 +37,13 @@ if (typeof parsedArgs.bundle === 'string') {
 
 const defaultEnv = 'BUILD_ROLLUP=true';
 
-const getCommand = (env, ...flags) => [crossEnv, defaultEnv, env, rollup, config, environment, watch, ...flags]
-  .filter(Boolean)
-  .join(' ');
+const getCommand = (env, ...flags) =>
+  [crossEnv, defaultEnv, env, rollup, config, environment, watch, ...flags]
+    .filter(Boolean)
+    .join(' ');
 
 const buildPreact = args.includes('--p-react');
-const scripts = buildPreact
-  ? getPReactScripts()
-  : getConcurrentlyArgs(getCommands());
+const scripts = buildPreact ? getPReactScripts() : getConcurrentlyArgs(getCommands());
 
 const cleanBuildDirs = !args.includes('--no-clean');
 

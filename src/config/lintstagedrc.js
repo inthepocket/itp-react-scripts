@@ -7,10 +7,7 @@ module.exports = {
   concurrent: false,
   linters: {
     'README.md': [`${doctoc} --maxlevel 3 --notitle`, 'git add'],
-    '.all-contributorsrc': [
-      `${itpScripts} contributors generate`,
-      'git add README.md',
-    ],
+    '.all-contributorsrc': [`${itpScripts} contributors generate`, 'git add README.md'],
     '**/*.+(js|json|less|css|ts|tsx|md)': [
       isOptedOut('autoformat', null, `${itpScripts} format`),
       `${itpScripts} lint --fix`,
