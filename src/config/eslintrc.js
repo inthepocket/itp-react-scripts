@@ -11,7 +11,11 @@ module.exports = {
     ifAnyDep('flow-bin', 'eslint-config-prettier/flowtype'),
     require.resolve('eslint-config-prettier/react'),
   ].filter(Boolean),
-  parser: ifAnyDep(['babel-cli', 'babel-core', 'babel-eslint', 'babel-loader'], 'babel-eslint'),
+  parser: ifAnyDep(
+    ['babel-cli', 'babel-core', 'babel-eslint', 'babel-loader'],
+    'babel-eslint',
+    ifAnyDep(['typescript'], 'typescript-eslint-parser')
+  ),
   rules: {
     'no-use-before-define': [
       'error',
