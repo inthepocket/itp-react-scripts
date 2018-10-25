@@ -18,7 +18,8 @@
     "format": "node src format",
     "validate": "node src validate",
     "precommit": "node src precommit",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "postinstall": "./postinstall.sh"
   },
   "files": [
     "dist",
@@ -26,7 +27,8 @@
     "eslint.js",
     "config.js",
     "prettier.js",
-    "jest.js"
+    "jest.js",
+    "postinstall.sh"
   ],
   "keywords": [],
   "author": "In The Pocket <hello@inthepocket.com> (http://inthepocket.com)",
