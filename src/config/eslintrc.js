@@ -13,6 +13,7 @@ module.exports = {
   ].filter(Boolean),
   parser: ifAnyDep(['babel-cli', 'babel-core', 'babel-eslint', 'babel-loader'], 'babel-eslint'),
   rules: {
+    ...ifAnyDep('react-native', { 'jsx-a11y/accessible-emoji': 'off' }),
     'no-use-before-define': [
       'error',
       {
