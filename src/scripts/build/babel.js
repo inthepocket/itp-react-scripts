@@ -7,7 +7,10 @@ const args = process.argv.slice(2);
 const here = p => path.join(__dirname, p);
 
 const useBuiltinConfig =
-  !args.includes('--presets') && !hasFile('.babelrc') && !hasPkgProp('babel');
+  !args.includes('--presets') &&
+  !hasFile('.babelrc') &&
+  !hasFile('.babelrc.js') &&
+  !hasPkgProp('babel');
 const config = useBuiltinConfig ? ['--presets', here('../../config/babelrc.js')] : [];
 
 const ignore = args.includes('--ignore') ? [] : ['--ignore', '__tests__,__mocks__'];
