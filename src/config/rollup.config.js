@@ -97,7 +97,7 @@ const output = [
   },
 ];
 
-const useBuiltinConfig = !hasFile('.babelrc') && !hasPkgProp('babel');
+const useBuiltinConfig = !hasFile('.babelrc') && !hasFile('.babelrc.js') && !hasPkgProp('babel');
 const babelPresets = useBuiltinConfig ? [here('../config/babelrc.js')] : [];
 
 const replacements = Object.entries(umd ? process.env : omit(process.env, ['NODE_ENV'])).reduce(
@@ -128,7 +128,8 @@ module.exports = {
     rollupBabel({
       exclude: 'node_modules/**',
       presets: babelPresets,
-      babelrc: true,
+      babelrc: !useBuiltinConfig,
+      runtimeHelpers: useBuiltinConfig,
     }),
     replace(replacements),
     useSizeSnapshot ? sizeSnapshot({ printInfo: false }) : null,
