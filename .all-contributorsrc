@@ -111,6 +111,15 @@
         "ideas",
         "review"
       ]
+    },
+    {
+      "login": "bitcrumb",
+      "name": "Lode Vanhove",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/135126?v=4",
+      "profile": "https://github.com/bitcrumb",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "repoType": "github"

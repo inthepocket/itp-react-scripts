@@ -19,6 +19,7 @@
     "validate": "node src validate",
     "precommit": "node src precommit",
     "commit": "npx git-cz@1.7.1"
+    "postinstall": "./postinstall.sh"
   },
   "files": [
     "dist",
@@ -26,7 +27,8 @@
     "eslint.js",
     "config.js",
     "prettier.js",
-    "jest.js"
+    "jest.js",
+    "postinstall.sh"
   ],
   "keywords": [],
   "author": "In The Pocket <hello@inthepocket.com> (http://inthepocket.com)",
@@ -67,7 +69,7 @@
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-react-native": "^3.2.1",
     "glob": "^7.1.2",
-    "husky": "^1.0.0-rc.13",
+    "husky": "^1.1.2",
     "is-ci": "^1.1.0",
     "jest": "^23.6.0",
     "lint-staged": "^7.0.4",
