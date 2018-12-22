@@ -11,7 +11,7 @@ function main() {
   log "To add support for eslint in your editor, create an .eslintrc file in your project root with the following contents"
   log "
   {
-    \"extends:\" \"./node_modules/@inthepocket/itp-react-scripts/dist/config/eslintrc.js\"
+    \"extends\": \"./node_modules/@inthepocket/itp-react-scripts/dist/config/eslintrc.js\"
   }
   "
   log ""
