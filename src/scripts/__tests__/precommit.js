@@ -5,7 +5,7 @@ expect.addSnapshotSerializer(unquoteSerializer);
 expect.addSnapshotSerializer(winPathSerializer);
 
 cases(
-  'precommit',
+  'pre-commit',
   ({
     args = [],
     utils = require('../../utils'),
@@ -24,12 +24,11 @@ cases(
     });
     process.exit = jest.fn();
 
-    process.argv = ['node', '../precommit', ...args];
-    crossSpawnSyncMock.mockClear();
+    process.argv = ['node', '../pre-commit', ...args];
 
     try {
       // tests
-      require('../precommit');
+      require('../pre-commit');
       expect(crossSpawnSyncMock).toHaveBeenCalledTimes(2);
       const [firstCall, secondCall] = crossSpawnSyncMock.mock.calls;
       const [scriptOne, calledArgsOne] = firstCall;
