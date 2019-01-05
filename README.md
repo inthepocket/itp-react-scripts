@@ -148,7 +148,7 @@ module.exports = Object.assign(jestConfig, {
 
 ### Flow support
 
-If the `flow-bin` is a dependency on the project the `@babel/preset-flow` will automatically get loaded when you use the default babel config that comes with `kcd-scripts`. If you customised your `.babelrc`-file you might need to manually add `@babel/preset-flow` to the `presets`-section.
+If the `flow-bin` is a dependency on the project the `@babel/preset-flow` will automatically get loaded when you use the default babel config that comes with `itp-react-scripts`. If you customised your `.babelrc`-file you might need to manually add `@babel/preset-flow` to the `presets`-section.
 
 ## Inspiration
 
