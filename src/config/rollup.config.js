@@ -77,7 +77,19 @@ if (isPreact) {
 }
 
 const externalPattern = new RegExp(`^(${external.join('|')})($|/)`);
-const externalPredicate = external.length === 0 ? () => false : id => externalPattern.test(id);
+
+function externalPredicate(id) {
+  const isDep = externalPattern.test(id);
+  if (umd) {
+    // for UMD, we want to bundle all non-peer deps
+    return isDep;
+  }
+  // for esm/cjs we want to make all node_modules external
+  // TODO: support bundledDependencies if someone needs it ever...
+  const isNodeModule = id.includes('node_modules');
+  const isRelative = id.startsWith('.');
+  return isDep || (!isRelative && !path.isAbsolute(id)) || isNodeModule;
+}
 
 const filename = [pkg.name, filenameSuffix, `.${format}`, minify ? '.min' : null, '.js']
   .filter(Boolean)
@@ -97,7 +109,11 @@ const output = [
   },
 ];
 
-const useBuiltinConfig = !hasFile('.babelrc') && !hasFile('.babelrc.js') && !hasPkgProp('babel');
+const useBuiltinConfig =
+  !hasFile('.babelrc') &&
+  !hasFile('.babelrc.js') &&
+  !hasFile('babel.config.js') &&
+  !hasPkgProp('babel');
 const babelPresets = useBuiltinConfig ? [here('../config/babelrc.js')] : [];
 
 const replacements = Object.entries(umd ? process.env : omit(process.env, ['NODE_ENV'])).reduce(
@@ -126,7 +142,6 @@ module.exports = {
     commonjs({ include: 'node_modules/**' }),
     json(),
     rollupBabel({
-      exclude: 'node_modules/**',
       presets: babelPresets,
       babelrc: !useBuiltinConfig,
       runtimeHelpers: useBuiltinConfig,
@@ -142,14 +157,16 @@ module.exports = {
             return;
           }
 
-          input.filter(single => single.indexOf('index.js') === -1).forEach(single => {
-            const chunk = path.basename(single);
+          input
+            .filter(single => single.indexOf('index.js') === -1)
+            .forEach(single => {
+              const chunk = path.basename(single);
 
-            writeExtraEntry(chunk.replace(/\..+$/, ''), {
-              cjs: `${dirpath}/cjs/${chunk}`,
-              esm: `${dirpath}/esm/${chunk}`,
+              writeExtraEntry(chunk.replace(/\..+$/, ''), {
+                cjs: `${dirpath}/cjs/${chunk}`,
+                esm: `${dirpath}/esm/${chunk}`,
+              });
             });
-          });
         },
       }))(),
   ].filter(Boolean),

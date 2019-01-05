@@ -33,8 +33,8 @@ const browsersConfig = browserslist.loadConfig({ path: appDirectory }) || ['ie 1
 const envTargets = isTest
   ? { node: 'current' }
   : isWebpack || isRollup
-    ? { browsers: browsersConfig }
-    : { node: getNodeVersion(pkg) };
+  ? { browsers: browsersConfig }
+  : { node: getNodeVersion(pkg) };
 const envOptions = { modules: false, loose: true, targets: envTargets };
 
 module.exports = () => ({
@@ -44,6 +44,7 @@ module.exports = () => ({
       ['react', 'preact'],
       [require.resolve('@babel/preset-react'), { pragma: isPreact ? 'React.h' : undefined }],
     ),
+    ifAnyDep(['flow-bin'], [require.resolve('@babel/preset-flow')]),
   ].filter(Boolean),
   plugins: [
     [require.resolve('@babel/plugin-transform-runtime'), { useESModules: treeshake && !isCJS }],

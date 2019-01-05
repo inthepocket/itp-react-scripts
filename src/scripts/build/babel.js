@@ -10,6 +10,7 @@ const useBuiltinConfig =
   !args.includes('--presets') &&
   !hasFile('.babelrc') &&
   !hasFile('.babelrc.js') &&
+  !hasFile('babel.config.js') &&
   !hasPkgProp('babel');
 const config = useBuiltinConfig ? ['--presets', here('../../config/babelrc.js')] : [];
 
