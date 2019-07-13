@@ -42,6 +42,8 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
     "all-contributors-cli": "^5.0.0",
     "arrify": "^1.0.1",
     "babel-cli": "^7.0.0-0",
